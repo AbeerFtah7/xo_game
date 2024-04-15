@@ -10,8 +10,13 @@ class XOGame extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
        home: Scaffold(
+         backgroundColor: Colors.black,
         appBar: AppBar(
-          title: Text('X O Game'),
+          backgroundColor: Colors.black,
+
+          title: Text('X O Game',style: TextStyle(
+            color: Colors.white
+          ),),
         ),
         body:
 
@@ -139,21 +144,26 @@ class _XOGameBoardState extends State<XOGameBoard> {
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          DropdownButton<String>(
-            value: _selectedPlayer,
-            onChanged: (value) {
-              setState(() {
-                _selectedPlayer = value!;
-                _currentPlayer = _selectedPlayer;
-                _resetBoard();
-              });
-            },
-            items: _players.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
+          Container(
+            color: Colors.white,
+            padding: EdgeInsets.all(8),
+            child: DropdownButton<String>(
+
+              value: _selectedPlayer,
+              onChanged: (value) {
+                setState(() {
+                  _selectedPlayer = value!;
+                  _currentPlayer = _selectedPlayer;
+                  _resetBoard();
+                });
+              },
+              items: _players.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
           ),
           SizedBox(height: 20),
           GridView.builder(
